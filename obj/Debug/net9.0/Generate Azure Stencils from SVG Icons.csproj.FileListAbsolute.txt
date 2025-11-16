@@ -1,0 +1,16 @@
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Interop.Microsoft.Office.Interop.Visio.dll
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.csproj.ResolveComReference.cache
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.GeneratedMSBuildEditorConfig.editorconfig
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.AssemblyInfoInputs.cache
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.AssemblyInfo.cs
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.csproj.CoreCompileInputs.cache
+F:\C Sharp\Generate Azure Stencils from SVG Icons\bin\Debug\net9.0\Generate Azure Stencils from SVG Icons.exe
+F:\C Sharp\Generate Azure Stencils from SVG Icons\bin\Debug\net9.0\Generate Azure Stencils from SVG Icons.deps.json
+F:\C Sharp\Generate Azure Stencils from SVG Icons\bin\Debug\net9.0\Generate Azure Stencils from SVG Icons.runtimeconfig.json
+F:\C Sharp\Generate Azure Stencils from SVG Icons\bin\Debug\net9.0\Generate Azure Stencils from SVG Icons.dll
+F:\C Sharp\Generate Azure Stencils from SVG Icons\bin\Debug\net9.0\Generate Azure Stencils from SVG Icons.pdb
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.dll
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\refint\Generate Azure Stencils from SVG Icons.dll
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.pdb
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\Generate Azure Stencils from SVG Icons.genruntimeconfig.cache
+F:\C Sharp\Generate Azure Stencils from SVG Icons\obj\Debug\net9.0\ref\Generate Azure Stencils from SVG Icons.dll

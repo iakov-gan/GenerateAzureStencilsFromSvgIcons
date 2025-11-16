@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "E4kUuX2ZIBc=",
+  "success": true,
+  "projectFilePath": "F:\\C Sharp\\Generate Azure Stencils from SVG Icons\\Generate Azure Stencils from SVG Icons.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jeff\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.305\\microsoft.net.sdk.compilers.toolset.9.0.305.nupkg.sha512"
+  ],
+  "logs": []
+}

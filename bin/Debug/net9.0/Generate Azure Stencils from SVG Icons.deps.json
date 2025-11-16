@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Generate Azure Stencils from SVG Icons/1.0.0": {
+        "runtime": {
+          "Generate Azure Stencils from SVG Icons.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Generate Azure Stencils from SVG Icons/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
