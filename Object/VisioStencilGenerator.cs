@@ -229,8 +229,8 @@ namespace GenerateAzureStencilsfromSVGIcons.Object
             catch
             {
             }
+            
             // Optional font family example:
-
             if (_fontType != null)
             {
                 try
@@ -309,18 +309,18 @@ namespace GenerateAzureStencilsfromSVGIcons.Object
                         (short)Visio.VisCellIndices.visCnnctY].FormulaU = fy;
                 }
 
-                Add("0", "0.25*Height");
-                Add("0", "0.5*Height");
-                Add("0", "0.75*Height");
-                Add("0.25*Width", "0");
-                Add("0.5*Width", "0");
-                Add("0.75*Width", "0");
-                Add("0.25*Width", "Height");
-                Add("0.5*Width", "Height");
-                Add("0.75*Width", "Height");
-                Add("Width", "0.25*Height");
-                Add("Width", "0.5*Height");
-                Add("Width", "0.75*Height");
+                Add("-0.05", "0.25*Height");
+                Add("-0.05", "0.5*Height");
+                Add("-0.05", "0.75*Height");
+                Add("0.25*Width", "-0.05");
+                Add("0.5*Width", "-0.05");
+                Add("0.75*Width", "-0.05");
+                Add("0.25*Width", "Height+0.05");
+                Add("0.5*Width", "Height+0.05");
+                Add("0.75*Width", "Height+0.05");
+                Add("Width+0.05", "0.25*Height");
+                Add("Width+0.05", "0.5*Height");
+                Add("Width+0.05", "0.75*Height");
 
                 main.CellsSRC[
                         (short)Visio.VisSectionIndices.visSectionObject,
