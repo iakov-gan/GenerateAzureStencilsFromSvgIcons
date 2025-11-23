@@ -1,65 +1,70 @@
-﻿using GenerateAzureStencilsfromSVGIcons.Object;
+﻿namespace GenerateAzureStencilsFromSvgIcons;
+
+using GenerateAzureStencilsFromSvgIcons.Model;
+using GenerateAzureStencilsFromSvgIcons.Object;
+using GenerateAzureStencilsFromSvgIcons.Service;
 using Microsoft.Extensions.Configuration;
 
-namespace GenerateAzureStencilsfromSVGIcons
+internal static class Program
 {
-    internal static class Program
+    private static IConfigurationRoot BuildConfig()
     {
-        private static IConfigurationRoot BuildConfig()
+        return new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
+    }
+
+    private static string ExpandEnv(string? v) =>
+        string.IsNullOrWhiteSpace(v) ? string.Empty : Environment.ExpandEnvironmentVariables(v);
+
+    private static AppPathsConfigModel LoadPaths(IConfiguration cfg)
+    {
+        // Prefer direct key access
+        var iconsRoot = cfg.GetValue<string>("Paths:IconsRoot");
+        var outputFolder = cfg.GetValue<string>("Paths:OutputFolder");
+
+        if (string.IsNullOrWhiteSpace(iconsRoot))
+            throw new InvalidOperationException("Missing config key Paths:IconsRoot");
+        if (string.IsNullOrWhiteSpace(outputFolder))
+            throw new InvalidOperationException("Missing config key Paths:OutputFolder");
+
+        return new AppPathsConfigModel(
+            ExpandEnv(iconsRoot),
+            ExpandEnv(outputFolder));
+    }
+
+    private static async Task Main(string[] args)
+    {
+        try
         {
-            return new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .Build();
+            var config = BuildConfig();
+            var paths = LoadPaths(config);
+            var fontType = config.GetValue<string>("Font:Type");
+            var fontSize = Convert.ToInt16(config.GetValue<int?>("Font:Size") ?? 10);
+
+            Console.WriteLine("Azure SVG -> Visio stencil generator");
+            Console.WriteLine($"Icons root   : {paths.IconsRoot}");
+            Console.WriteLine($"Output folder: {paths.OutputFolder}");
+            Console.WriteLine();
+
+            Directory.CreateDirectory(paths.OutputFolder);
+            Directory.CreateDirectory(paths.IconsRoot);
+
+            var azureIconsDownloader = new AzureIconsDownloader();
+            await azureIconsDownloader.DownloadAsync(paths.IconsRoot);
+
+            var discovery = new SvgDiscoveryService();
+            var groups = discovery.DiscoverGroups(paths.IconsRoot);
+
+            var formatter = new NameFormatter();
+            var generator = new VisioStencilGenerator(paths, formatter, fontType, fontSize);
+            generator.GenerateStencils(groups);
         }
-
-        private static string ExpandEnv(string? v) =>
-            string.IsNullOrWhiteSpace(v) ? string.Empty : Environment.ExpandEnvironmentVariables(v);
-
-        private static AppPathsConfig LoadPaths(IConfiguration cfg)
+        catch (Exception ex)
         {
-            // Prefer direct key access
-            var iconsRoot = cfg.GetValue<string>("Paths:IconsRoot");
-            var outputFolder = cfg.GetValue<string>("Paths:OutputFolder");
-
-            if (string.IsNullOrWhiteSpace(iconsRoot))
-                throw new InvalidOperationException("Missing config key Paths:IconsRoot");
-            if (string.IsNullOrWhiteSpace(outputFolder))
-                throw new InvalidOperationException("Missing config key Paths:OutputFolder");
-
-            return new AppPathsConfig(
-                ExpandEnv(iconsRoot),
-                ExpandEnv(outputFolder));
-        }
-
-        private static void Main(string[] args)
-        {
-            try
-            {
-                var config = BuildConfig();
-                var paths = LoadPaths(config);
-                var fontType = config.GetValue<string>("Font:Type");
-                var fontSize = Convert.ToInt16(config.GetValue<int?>("Font:Size") ?? 10);
-
-                Console.WriteLine("Azure SVG -> Visio stencil generator");
-                Console.WriteLine($"Icons root   : {paths.IconsRoot}");
-                Console.WriteLine($"Output folder: {paths.OutputFolder}");
-                Console.WriteLine();
-
-                Directory.CreateDirectory(paths.OutputFolder);
-
-                var discovery = new SvgDiscoveryService();
-                var groups = discovery.DiscoverGroups(paths.IconsRoot);
-
-                var formatter = new NameFormatter();
-                var generator = new VisioStencilGenerator(paths, formatter, fontType, fontSize);
-                generator.GenerateStencils(groups);
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine("ERROR: " + ex.Message);
-            }
+            Console.Error.WriteLine("ERROR: " + ex.Message);
         }
     }
 }
