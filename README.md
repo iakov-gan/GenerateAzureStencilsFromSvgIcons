@@ -86,6 +86,7 @@ A typical `appsettings.json` might look like:
     "Size": 10
   }
 }
+```
 
 ### How to run
 
@@ -99,8 +100,10 @@ A typical `appsettings.json` might look like:
 
    ```bash
    dotnet build
+   ```
 
 3. Run the application:
 
    ```bash
    dotnet run --project AzureVisioStencilGenerator.csproj
+   ```
